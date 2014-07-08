@@ -1,0 +1,9 @@
+[color]
+	ui = true
+[rerere]
+	enabled = true
+[user]
+	name = Yoav Zimmerman
+	email = yoavzimmerman@gmail.com
+[core]
+	editor = vim
