@@ -11,6 +11,8 @@
 4. [lightline](https://github.com/itchyny/lightline.vim)
 5. [neocomplcache](https://github.com/Shougo/neocomplcache.vim)
 6. [TComment](https://github.com/tomtom/tcomment_vim)
+7. [vim-coffee-script](https://github.com/kchmck/vim-coffee-script.git)
+
 
 ## Setup
 
