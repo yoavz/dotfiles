@@ -1,4 +1,5 @@
 # symlinks
+mv ~/.vim ~/.old_vim
 ln -sfn ~/dotfiles/vim ~/.vim
 ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
 
