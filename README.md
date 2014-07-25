@@ -12,6 +12,7 @@
 5. [neocomplcache](https://github.com/Shougo/neocomplcache.vim)
 6. [TComment](https://github.com/tomtom/tcomment_vim)
 7. [vim-coffee-script](https://github.com/kchmck/vim-coffee-script.git)
+8. [ctrlP](https://github.com/kien/ctrlp.vim)
 
 
 ## Setup
