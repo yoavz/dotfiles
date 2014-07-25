@@ -23,7 +23,7 @@ set tags=./tags,tags;
 " lightline
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'solarized',
       \ 'component': {
       \   'readonly': '%{&readonly?"x":""}',
       \ },
