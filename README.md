@@ -11,9 +11,12 @@
 4. [lightline](https://github.com/itchyny/lightline.vim)
 5. [neocomplcache](https://github.com/Shougo/neocomplcache.vim)
 6. [TComment](https://github.com/tomtom/tcomment_vim)
-7. [vim-coffee-script](https://github.com/kchmck/vim-coffee-script.git)
-8. [ctrlP](https://github.com/kien/ctrlp.vim)
+7. [ctrlP](https://github.com/kien/ctrlp.vim)
+8. [fugitive](https://github.com/tpope/vim-fugitive)
 
+##### Language-Specific
+
+1. [vim-coffee-script](https://github.com/kchmck/vim-coffee-script.git)
 
 ## Setup
 
@@ -29,3 +32,7 @@ clone this repo to ~/dotfiles
     git submodule init
     git submodule update
     git submodule foreach git pull origin master
+
+to add a new plugin
+    
+    git submodule add [GIT_REPO_URL] vim/bundle/[PLUGIN_NAME] cat .gitmodules
