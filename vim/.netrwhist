@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/yoav'
-let g:netrw_dirhist_2='/home/yoav/dotfiles/vim'
-let g:netrw_dirhist_3='/Users/yoav/projects/music_project'
-let g:netrw_dirhist_4='/Users/yoav/projects'
-let g:netrw_dirhist_5='/Users/yoav/dotfiles'
-let g:netrw_dirhist_6='/home/yoav/fastapi/src/apiserver'
