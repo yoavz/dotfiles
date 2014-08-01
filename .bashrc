@@ -99,3 +99,6 @@ fi
 alias tmux="TERM=screen-256color-bce tmux"
 
 alias octave="/usr/local/octave/3.8.0/bin/octave-3.8.0"
+
+alias fastapi=". /opt/python27-fastapi/bin/activate"
+alias fastservice=". /opt/python27-fastservice/bin/activate"
