@@ -20,11 +20,6 @@
 
 ## Setup
 
-install [pathogen](https://github.com/tpope/vim-pathogen) if you have not already
-
-    mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-
 clone this repo to ~/dotfiles
 
     cd ~/dotfiles
