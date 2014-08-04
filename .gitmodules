@@ -15,7 +15,7 @@
     url = https://github.com/tomtom/tcomment_vim
 [submodule "vim/bundle/neocomplcache"]
 	path = vim/bundle/neocomplcache
-	url = git@github.com:Shougo/neocomplcache.vim.git
+	url = https://github.com/Shougo/neocomplcache.vim 
 [submodule "vim/bundle/vim-coffee-script"]
 	path = vim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
@@ -24,4 +24,4 @@
 	url = https://github.com/kien/ctrlp.vim
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
-	url = git@github.com:tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive 
