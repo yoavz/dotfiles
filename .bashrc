@@ -97,8 +97,19 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 alias tmux="TERM=screen-256color-bce tmux"
-
 alias octave="/usr/local/octave/3.8.0/bin/octave-3.8.0"
-
 alias fastapi=". /opt/python27-fastapi/bin/activate"
 alias fastservice=". /opt/python27-fastservice/bin/activate"
+
+# recursively delete *.pyc files
+alias cleanpyc="find . -name \"*.pyc\" -exec rm -rf {} \;"
+
+# save bash history over multiple terminals
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+shopt -s histappend                      # append to history, don't overwrite it
+
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+:
