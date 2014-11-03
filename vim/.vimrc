@@ -22,6 +22,7 @@ set ttymouse=xterm2
 
 " highlight all searches
 set hlsearch
+set incsearch
 
 " resize splits on window resize
 au VimResized * exe "normal! \<c-w>"
@@ -78,11 +79,21 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:ack_default_options = " -H --nocolor --nogroup --column"
 
 
+
 """"""""""
 " mappings 
 """"""""""
+
+" wrapped line control
+:nmap j gj
+:nmap k gk
+
+" redo
+:nmap r <C-r>
+
 " ctags
 " TODO: why doesn't this work
+
 nnoremap <C-Space> <C-]>
 
 
