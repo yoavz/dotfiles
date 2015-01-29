@@ -9,6 +9,10 @@ filetype plugin indent on
 set encoding=utf-8
 set number
 set visualbell
+set ff=unix
+
+" copy/paste from and to clipboard
+set clipboard=unnamed
 
 " tabs are 4 spaces 
 set softtabstop=4 
@@ -102,6 +106,15 @@ nnoremap <C-Space> <C-]>
 
 " indent html/css/js by 2 instead of 4
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType sass setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" haskell should also use 2 instead of 4
+autocmd FileType haskell setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType lhaskell setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" and c++
+autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2

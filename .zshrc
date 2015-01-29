@@ -80,6 +80,11 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/loca
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias vi="mvim -v"
+alias vim="mvim -v"
+
+alias zshconfig="vim ~/.zshrc"
+
 # Z - fast directory navigating
 . `brew --prefix`/etc/profile.d/z.sh
 
