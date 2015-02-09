@@ -100,7 +100,6 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 
 nnoremap <C-w>s :SyntasticCheck<CR> 
 
-
 """"""""""
 " mappings 
 """"""""""
