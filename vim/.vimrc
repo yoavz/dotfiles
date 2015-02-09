@@ -60,14 +60,15 @@ iabbrev ldis ಠ_ಠ
 set tags=./tags,tags;
 
 " lightline
+set guifont=Source\ Code\ Pro\ ExtraLight\ for\ Powerline:h12,Menlo:h14
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'wombat',
       \ 'component': {
-      \   'readonly': '%{&readonly?"x":""}',
+      \   'readonly': '%{&readonly?"":""}',
       \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
 " neocomplcache
@@ -82,6 +83,22 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " Ack
 let g:ack_default_options = " -H --nocolor --nogroup --column"
 
+" Ctrl P
+let g:ctrlp_custom_ignore = 'pyc\|DS_Store'
+
+" Syntastic recommended settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
+nnoremap <C-w>s :SyntasticCheck<CR> 
 
 
 """"""""""
