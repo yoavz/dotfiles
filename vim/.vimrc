@@ -132,5 +132,6 @@ autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType haskell setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType lhaskell setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
-" and c++
+" c/c++ should use 2 instead of 4
 autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
