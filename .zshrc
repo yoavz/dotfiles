@@ -2,7 +2,19 @@
 export ZSH=$HOME/.oh-my-zsh
 
 # for homebrew
-export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/texbin:~/bin:$PATH"
+
+# cuda
+export DYLD_LIBRARY_PATH='/usr/local/cuda/lib/'
+export DYLD_FALLBACK_LIBRARY_PATH="/usr/local/cuda/lib:$HOME/.pyenv/versions/anaconda-2.0.1/lib:/usr/local/lib:/usr/lib"
+
+# cafe
+export PYTHONPATH="/Users/yoav/projects/deepdream/caffe/python:$PYTHONPATH"
+
+# mvn fix
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -84,8 +96,11 @@ source $ZSH/oh-my-zsh.sh
 
 alias vi="mvim -v"
 alias vim="mvim -v"
-
 alias zshconfig="vim ~/.zshrc"
+
+# Spark for CS 260
+export SPARK_HOME="/Users/yoav/school/cs260/project/spark-1.5.2"
+alias spark="$SPARK_HOME/bin/spark-submit"
 
 # Z - fast directory navigating
 . `brew --prefix`/etc/profile.d/z.sh
@@ -93,3 +108,8 @@ alias zshconfig="vim ~/.zshrc"
 # zsh highlighting!
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  
 
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/yoav/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/yoav/google-cloud-sdk/completion.zsh.inc'

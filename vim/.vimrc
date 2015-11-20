@@ -100,6 +100,9 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 
 nnoremap <C-w>s :SyntasticCheck<CR> 
 
+" Stop slimv from auto editing parens
+let g:paredit_mode=0
+
 """"""""""
 " mappings 
 """"""""""
@@ -124,7 +127,7 @@ nnoremap <C-Space> <C-]>
 autocmd FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType scss setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType sass setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType htmldjango setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
@@ -135,3 +138,24 @@ autocmd FileType lhaskell setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " c/c++ should use 2 instead of 4
 autocmd FileType cpp setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" matlab should use 2 instead of 4
+autocmd FileType matlab setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" Protect large files from sourcing and other overhead.
+" Files become read only
+if !exists("my_auto_commands_loaded")
+  let my_auto_commands_loaded = 1
+  " Large files are > 10M
+  " Set options:
+  " eventignore+=FileType (no syntax highlighting etc
+  " assumes FileType always on)
+  " noswapfile (save copy of file)
+  " bufhidden=unload (save memory when other file is viewed)
+  " buftype=nowritefile (is read-only)
+  " undolevels=-1 (no undo possible)
+  let g:LargeFile = 1024 * 1024 * 10
+  augroup LargeFile
+    autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
+    augroup END
+  endif
