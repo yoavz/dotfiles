@@ -14,9 +14,13 @@ set ff=unix
 " copy/paste from and to clipboard
 set clipboard=unnamed
 
-" tabs are 4 spaces 
-set softtabstop=4 
-set shiftwidth=4 
+" backspace works regularly
+" https://vi.stackexchange.com/questions/2162/why-doesnt-the-backspace-key-work-in-insert-mode
+set backspace=indent,eol,start
+
+" tabs are 4 spaces
+set softtabstop=4
+set shiftwidth=4
 set tabstop=4
 set expandtab
 
@@ -40,9 +44,11 @@ augroup line_return
         \ endif
 augroup END
 
+" strip whitespace
+autocmd BufWritePre * %s/\s\+$//e
 
 """"""""""""""""
-" color settings 
+" color settings
 """"""""""""""""
 
 set background=dark
@@ -53,7 +59,7 @@ colorscheme solarized
 iabbrev ldis ಠ_ಠ
 
 """""""""
-" plugins 
+" plugins
 """""""""
 
 " for ctags
@@ -98,13 +104,13 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
-nnoremap <C-w>s :SyntasticCheck<CR> 
+nnoremap <C-w>s :SyntasticCheck<CR>
 
 " Stop slimv from auto editing parens
 let g:paredit_mode=0
 
 """"""""""
-" mappings 
+" mappings
 """"""""""
 
 " wrapped line control
@@ -114,8 +120,17 @@ let g:paredit_mode=0
 " redo
 :nmap r <C-r>
 
-" ctags
-" TODO: why doesn't this work
+" ` -> escape key
+:cmap ` <Esc>
+:nmap ` <Esc>
+:vmap ` <Esc>
+let g:ctrlp_prompt_mappings = {
+\ 'PrtExit()':            ['<esc>', '`'],
+\ }
+
+" jj -> escape key training
+:imap jj <Esc>
+:cmap jj <Esc>
 
 nnoremap <C-Space> <C-]>
 
@@ -159,3 +174,6 @@ if !exists("my_auto_commands_loaded")
     autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
     augroup END
   endif
+
+" python autoformatting
+" autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
