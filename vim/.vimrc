@@ -157,6 +157,10 @@ autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " matlab should use 2 instead of 4
 autocmd FileType matlab setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+" indent off for yaml
+autocmd FileType yaml let b:did_indent = 1
+autocmd FileType yaml setlocal indentexpr=
+
 " Protect large files from sourcing and other overhead.
 " Files become read only
 if !exists("my_auto_commands_loaded")
@@ -176,4 +180,5 @@ if !exists("my_auto_commands_loaded")
   endif
 
 " python autoformatting
-" autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
+let g:autopep8_on_save = 1
+let g:autopep8_disable_show_diff=1

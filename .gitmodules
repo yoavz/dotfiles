@@ -43,3 +43,9 @@
 [submodule "vim/bundle/isort"]
 	path = vim/bundle/isort
 	url = https://github.com/fisadev/vim-isort.git
+[submodule "vim/bundle/elm"]
+	path = vim/bundle/elm
+	url = https://github.com/ElmCast/elm-vim.git
+[submodule "vim/bundle/autopep8"]
+	path = vim/bundle/autopep8
+	url = git@github.com:tell-k/vim-autopep8.git
