@@ -49,3 +49,6 @@
 [submodule "vim/bundle/autopep8"]
 	path = vim/bundle/autopep8
 	url = git@github.com:tell-k/vim-autopep8.git
+[submodule "vim/bundle/ale"]
+	path = vim/bundle/ale
+	url = git@github.com:w0rp/ale.git
