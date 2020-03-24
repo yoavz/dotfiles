@@ -1,7 +1,48 @@
 " pre-settings
-execute pathogen#infect()
 syntax enable
 filetype plugin indent on
+
+""""""""""""""
+" plugin setup
+""""""""""""""
+
+" Install Plug if not already installed.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tcomment_vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-unimpaired'
+Plug 'python/black'
+Plug 'junegunn/fzf.vim'         " fuzzy matching
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'hashivim/vim-terraform'
+Plug 'leafgarland/typescript-vim'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'junegunn/vim-emoji'
+Plug 'jparise/vim-graphql'
+Plug 'Rykka/riv.vim'
+if isdirectory('/usr/local/opt/fzf')
+  Plug '/usr/local/opt/fzf'
+endif
+if isdirectory($HOME . '/.local/fzf')
+  Plug $HOME . '/.local/fzf'
+endif
+
+call plug#end()
+
 
 """""""""""""""
 " basic options
@@ -26,11 +67,13 @@ set expandtab
 
 " Enable mouse use in all modes
 set mouse=a
-set ttymouse=xterm2
 
 " highlight all searches
 set hlsearch
 set incsearch
+
+" current file is always set to current directory
+set autochdir
 
 " resize splits on window resize
 au VimResized * exe "normal! \<c-w>"
@@ -62,20 +105,19 @@ iabbrev ldis ಠ_ಠ
 " plugins
 """""""""
 
-" for ctags
-set tags=./tags,tags;
+" for coc navigation
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> cc :CocCommand
 
-" lightline
-set guifont=Source\ Code\ Pro\ ExtraLight\ for\ Powerline:h12,Menlo:h14
-set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"":""}',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
+" for coc gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" airline + coc
+let g:airline#extensions#coc#enabled = 1
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
@@ -89,25 +131,20 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 " Ack
 let g:ack_default_options = " -H --nocolor --nogroup --column"
 
+
 " Ctrl P
-let g:ctrlp_custom_ignore = 'pyc\|DS_Store'
+let g:ctrlp_custom_ignore = 'node_modules\|pyc\|DS_Store'
 
-" Syntastic recommended settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Open NERDTree automatically
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Prettier
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.html Prettier
 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-
-nnoremap <C-w>s :SyntasticCheck<CR>
-
-" Stop slimv from auto editing parens
-let g:paredit_mode=0
+" Emojis
+set completefunc=emoji#complete
 
 """"""""""
 " mappings
@@ -131,6 +168,9 @@ let g:ctrlp_prompt_mappings = {
 " jj -> escape key training
 :imap jj <Esc>
 :cmap jj <Esc>
+
+:nmap <silent> an :ALENext<cr>
+:nmap <silent> ab :ALEPrevious<cr>
 
 nnoremap <C-Space> <C-]>
 
@@ -157,9 +197,18 @@ autocmd FileType c setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " matlab should use 2 instead of 4
 autocmd FileType matlab setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+" go should use tabs
+autocmd FileType go setlocal expandtab!
+
 " indent off for yaml
 autocmd FileType yaml let b:did_indent = 1
 autocmd FileType yaml setlocal indentexpr=
+
+" For Riv (RST plugin)
+filetype plugin indent on
+syntax on
+" Treat all txt files as RST filetypes.
+au BufReadPost *.txt set syntax=RST
 
 " Protect large files from sourcing and other overhead.
 " Files become read only
@@ -178,7 +227,3 @@ if !exists("my_auto_commands_loaded")
     autocmd BufReadPre * let f=expand("<afile>") | if getfsize(f) > g:LargeFile | set eventignore+=FileType | setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1 | else | set eventignore-=FileType | endif
     augroup END
   endif
-
-" python autoformatting
-let g:autopep8_on_save = 1
-let g:autopep8_disable_show_diff=1

@@ -6,7 +6,7 @@
 	name = Yoav Zimmerman
 	email = yoavzimmerman@gmail.com
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = /Users/yoavz/.gitignore_global
     attributesfile = ~/.gitattributes_global
 	autocrlf = false
@@ -14,13 +14,23 @@
 	default = current
 [credential]
 	helper = osxkeychain
-# [filter "nbstrip_full"]
-#     clean = "jq --indent 1 \
-#             '(.cells[] | select(has(\"outputs\")) | .outputs) = []  \
-#             | (.cells[] | select(has(\"execution_count\")) | .execution_count) = null  \
-#             | .metadata = {\"language_info\": {\"name\": \"python\", \"pygments_lexer\": \"ipython3\"}} \
-#             | .cells[].metadata = {} \
-#             | .cells[].outputs = {} \
-#             '"
-#     smudge = cat
-#     required = true
+
+[diff]
+  tool = meld
+[difftool]
+  prompt = false
+[difftool "meld"]
+  trustExitCode = true
+  cmd = open -W -a Meld --args \"$LOCAL\" \"$REMOTE\"
+[merge]
+  tool = meld
+[mergetool]
+  prompt = false
+[mergetool "meld"]
+  trustExitCode = true
+    cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

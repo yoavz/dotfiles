@@ -1,10 +1,8 @@
-# symlinks
-mv ~/.vim ~/.old_vim
-ln -sfn ~/dotfiles/vim ~/.vim
-ln -sf ~/dotfiles/vim/.vimrc ~/.vimrc
+#!/bin/bash
 
-# ln -sf ~/dotfiles/.bashrc ~/.bashrc
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.oh-my-zsh ~/.oh-my-zsh
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cp "${DIR}/.vimrc" ~/.vimrc
+cp "${DIR}/.zshrc" ~/.zshrc
+cp "${DIR}/.oh-my-zsh" ~/.oh-my-zsh
+cp "${DIR}/.tmux.conf" ~/.tmux.conf
+cp "${DIR}/.gitconfig" ~/.gitconfig
