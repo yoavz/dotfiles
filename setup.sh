@@ -3,6 +3,5 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cp "${DIR}/.vimrc" ~/.vimrc
 cp "${DIR}/.zshrc" ~/.zshrc
-cp "${DIR}/.oh-my-zsh" ~/.oh-my-zsh
 cp "${DIR}/.tmux.conf" ~/.tmux.conf
 cp "${DIR}/.gitconfig" ~/.gitconfig
