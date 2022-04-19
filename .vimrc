@@ -33,7 +33,6 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'junegunn/vim-emoji'
 Plug 'jparise/vim-graphql'
-Plug 'Rykka/riv.vim'
 if isdirectory('/usr/local/opt/fzf')
   Plug '/usr/local/opt/fzf'
 endif
@@ -203,12 +202,6 @@ autocmd FileType go setlocal expandtab!
 " indent off for yaml
 autocmd FileType yaml let b:did_indent = 1
 autocmd FileType yaml setlocal indentexpr=
-
-" For Riv (RST plugin)
-filetype plugin indent on
-syntax on
-" Treat all txt files as RST filetypes.
-au BufReadPost *.txt set syntax=RST
 
 " Protect large files from sourcing and other overhead.
 " Files become read only
